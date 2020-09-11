@@ -3,9 +3,12 @@ const expressSanitizer  = require('express-sanitizer'),
 	  bodyParser 		= require('body-parser'),
 	  mongoose   		= require("mongoose"),
       express    		= require("express"),
-	  app        		= express();
+	  app        		= express(),
+	  router 			= express.Router();
 	 
-	
+//const { Router } = require('express');
+// Define Routes
+const blogRoutes = require("./routes/blogs");	
 
 // DB CONNECT               
 mongoose.connect("mongodb://localhost:27017/blog_app_db", {
@@ -24,9 +27,17 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.use(expressSanitizer());
 
-const port = process.env.PORT || 3000;
+
+// Requiring ExpressRoutes
+//app.use('/', indexRoutes);
+app.use('/', blogRoutes);
+//app.use('/blogs/:id/comments', commentRoutes);
+
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log('Chaotic Basement Thoughts on port: ', port);
  }).on('error', (err) => {
 	   console.log('Error happened: ', err.message)
 	});
+
+module.exports = router;
