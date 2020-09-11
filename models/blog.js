@@ -1,3 +1,6 @@
+const express = require("express"),
+	  mongoose = require("mongoose"),
+	  router = express.Router({mergeParams:true});
 
 // MONGOOSE/MODEL CONFIG
 const blogSchema = new mongoose.Schema({
@@ -7,3 +10,4 @@ const blogSchema = new mongoose.Schema({
 	created: {type: Date, default: Date.now}
 });
 const Blog = mongoose.model("Blog", blogSchema);
+module.exports = Blog;
