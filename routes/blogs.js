@@ -1,12 +1,17 @@
+const express = require("express"),
+	  router = express.Router(),
+	  Blog = require("../models/blog");
+
+
 // Blog ROUTES
 ////////////////////////////////////////
 // ROOT PAGE REDIRECTS TO INDEX PAGE
-app.get("/", function(req, res){
+router.get("/", function(req, res){
 	res.redirect("/blogs");
 });
 
 // INDEX ROUTE - GET REQUEST SHOWS ALL BLOGS
-app.get('/blogs', function(req, res){
+router.get('/blogs', function(req, res){
 	Blog.find({}, function(err, blogs){
 		if(err){
 			console.log("ERROR")
@@ -19,12 +24,12 @@ app.get('/blogs', function(req, res){
 });
 
 // NEW ROUTE - ADD ROUTE TO FORM FOR NEW BLOG
-app.get("/blogs/new", function(req, res){
+router.get("/blogs/new", function(req, res){
 	res.render("new");
 });
 
 // CREATE ROUTE - ADD NEW BLOG TO DATABASE
-app.post("/blogs", function(req, res){
+router.post("/blogs", function(req, res){
 	//create blog
 	req.body.blog.body = req.sanitize(req.body.blog.body)
 	Blog.create(req.body.blog, function(err, newBlog){
@@ -39,7 +44,7 @@ app.post("/blogs", function(req, res){
 });
 
 // SHOW ROUTE - Display more info on particular item
-app.get("/blogs/:id", function(req, res){
+router.get("/blogs/:id", function(req, res){
 	Blog.findById(req.params.id, function(err, foundBlog){
 		if(err){
 			res.redirect("/blogs"); 
@@ -52,7 +57,7 @@ app.get("/blogs/:id", function(req, res){
 });
 
 // EDIT ROUTE
-app.get("/blogs/:id/edit", function(req, res){
+router.get("/blogs/:id/edit", function(req, res){
 	Blog.findById(req.params.id, function(err, foundBlog){
 		if(err){
 			res.redirect("/blogs")
@@ -64,7 +69,7 @@ app.get("/blogs/:id/edit", function(req, res){
 });
 
 // UPDATE ROUTE
-app.put("/blogs/:id", function(req, res){
+router.put("/blogs/:id", function(req, res){
 	req.body.blog.body = req.sanitize(req.body.blog.body)
 	Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
 		if(err){
@@ -77,7 +82,7 @@ app.put("/blogs/:id", function(req, res){
 });
 
 // DESTROY ROUTE
-app.delete('/blogs/:id', function(req, res){
+router.delete('/blogs/:id', function(req, res){
 	// Destroy blog
 	Blog.findByIdAndRemove(req.params.id, function(err){
 		if(err){
@@ -90,3 +95,5 @@ app.delete('/blogs/:id', function(req, res){
 	})
 	
 });
+
+module.exports = router;
