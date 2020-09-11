@@ -1,0 +1,11 @@
+i.icon.street {
+	font-size: 2em;
+}
+
+section.main {
+	margin: 64px auto 1em;
+}
+
+#delete {
+	display: inline;
+}
