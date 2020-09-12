@@ -8,7 +8,8 @@ const expressSanitizer  = require('express-sanitizer'),
 	 
 //const { Router } = require('express');
 // Define Routes
-const blogRoutes = require("./routes/blogs");	
+const blogRoutes = require("./routes/blogs"),
+	  commentRoutes = require("./routes/comments");	
 
 // DB CONNECT               
 mongoose.connect("mongodb://localhost:27017/blog_app_db", {
@@ -31,13 +32,13 @@ app.use(expressSanitizer());
 // Requiring ExpressRoutes
 //app.use('/', indexRoutes);
 app.use('/', blogRoutes);
-//app.use('/blogs/:id/comments', commentRoutes);
+app.use('/blogs/:id/comments', commentRoutes);
 
 const port = process.env.PORT || 3004;
 app.listen(port, () => {
   console.log('Chaotic Basement Thoughts on port: ', port);
  }).on('error', (err) => {
-	   console.log('Error happened: ', err.message)
+	   console.error('Error happened: ', err.message)
 	});
 
 module.exports = router;
