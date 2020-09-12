@@ -33,7 +33,7 @@ app.use(expressSanitizer());
 app.use('/', blogRoutes);
 //app.use('/blogs/:id/comments', commentRoutes);
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3004;
 app.listen(port, () => {
   console.log('Chaotic Basement Thoughts on port: ', port);
  }).on('error', (err) => {
