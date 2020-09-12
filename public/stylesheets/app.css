@@ -1,8 +1,12 @@
+body {
+	font-family: 'Mali', cursive;
+}
+
 i.icon.street {
 	font-size: 2em;
 }
 
-section.main {
+section.ui.main.text {
 	margin: 64px auto 1em;
 }
 
