@@ -4,7 +4,8 @@
   "description": "Using the 7 RESTful routes to create a blog app",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "app.js"
   },
   "author": "Lesego Letimela",
   "license": "ISC",
