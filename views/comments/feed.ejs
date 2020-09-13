@@ -1,0 +1,24 @@
+<!--TODO: Complete creation of comments front end then add to show page-->
+
+<section class="ui main text container segment">
+	<div class="ui comments">
+		<h3 class="ui dividing header">Comments</h3>
+		<div class="comment">
+			<% comments.forEach(comment => { %>
+				<a class="avatar">
+					<img src="https://image.freepik.com/free-vector/basic-variety-silhouette-avatars_23-2147675615.jpg">
+				</a>
+				<div class="content">
+					<a class="author">Bohlale</a>
+					<div class="metadata">
+						<span class="date">Today at 5:42PM</span>
+					</div>
+					<div class="text">How artistic!</div>
+					<div class="actions">
+						<a class="reply">Reply</a>
+					</div>
+				</div>
+			<% }) %>
+		</div>
+	</div>
+</section>

@@ -12,12 +12,36 @@
 		<div class="description">
 			<p><%- blog.body %></p>
 		</div>
+		<a class="ui purple basic button" href="/blogs/<%= blog._id %>/comments/new">Comment</a>
 		<a class="ui orange basic button" href="/blogs/<%= blog._id %>/edit">EDIT</a>
 		<form id="delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
 			<button class="ui red basic button">DELETE</button>
 		</form>
 	</div>
 </section>
+
+	<section class="ui main text container segment">
+		<div class="ui comments">
+			<h3 class="ui dividing header">Comments</h3>
+			<div class="comment">
+				<a class="avatar">
+					<img src="https://image.freepik.com/free-vector/basic-variety-silhouette-avatars_23-2147675615.jpg">
+				</a>
+				<div class="content">
+					<% blog.comments.forEach(comment => { %>
+					<a class="author"><%= comment.author %> </a>
+					<div class="metadata">
+						<span class="date"><%= comment.created.toDateString() %> </span>
+					</div>
+					<div class="text"><%= comment.text %> </div>
+					<div class="actions">
+						<a class="reply">Reply</a>
+					</div>
+					<% }) %>
+				</div>
+			</div>
+		</div>
+	</section>
 
 
 
