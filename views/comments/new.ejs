@@ -1,11 +1,11 @@
-<form class="ui form" action="#" method="POST">
+<form class="ui form" action="/blogs/<% blog._id %>" method="POST">
     <div class="field">
-      <label>Name</label>
-      <input type="text" name="name" placeholder="Name">
+      <label for="comment[author]">Name</label>
+      <input type="text" name="comment[author]" placeholder="Mr Tee">
     </div>
     <div class="field">
-      <label>Comment</label>
-      <input type="text" name="comment" placeholder="eg: Really great read">
+      <label for="comment[text]">Comment</label>
+      <input type="text" name="comment[text]" placeholder="eg: Really great read">
     </div>
     <div class="field">
       <div class="ui checkbox">
