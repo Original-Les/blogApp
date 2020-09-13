@@ -3,7 +3,8 @@ const express = require("express"),
       
 // Comment Model/Schema      
  const commentSchema = new mongoose.Schema({
-     text: String,
+     text   : String,
+     author : String,
      created: {type: Date, default: Date.now}
  });
  
