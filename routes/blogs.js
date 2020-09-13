@@ -12,12 +12,12 @@ router.get("/", function(req, res){
 
 // INDEX ROUTE - GET REQUEST SHOWS ALL BLOGS
 router.get('/blogs', function(req, res){
-	Blog.find({}, function(err, blogs){
+	Blog.find({}, function(err, foundBlog){
 		if(err){
 			console.error("ERROR", err.message);
 		}
 		else {
-			res.render("index", {blogs: blogs});
+			res.render("index", {blogs: foundBlog});
 		}
 	});
 	
@@ -31,7 +31,7 @@ router.get("/blogs/new", function(req, res){
 // CREATE ROUTE - ADD NEW BLOG TO DATABASE
 router.post("/blogs", function(req, res){
 	//create blog
-	req.body.blog.body = req.sanitize(req.body.blog.body)
+	req.body.blog.body = req.sanitize(req.body.blog.body);
 	Blog.create(req.body.blog, function(err, newBlog){
 		if(err){
 			console.error(err.message);
@@ -46,6 +46,7 @@ router.post("/blogs", function(req, res){
 
 // SHOW ROUTE - Display more info on particular item
 router.get("/blogs/:id", function(req, res){
+	
 	Blog.findById(req.params.id, function(err, foundBlog){
 		if(err){
 			console.error(err.message);
