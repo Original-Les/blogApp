@@ -27,14 +27,14 @@ router.post("/", (req, res) => {
                 if(err){
                     console.error(err.message);
                 } else {
-                    comments.save();
+                    comment.save();
                     foundBlog.comments.push(comment);
                     foundBlog.save((err, comment) =>{
                         if(err){
                             console.error(err.message);
                         } else {
                             
-                            res.redirect("/blogs/" + blog._id);
+                            res.redirect("/blogs/" + foundBlog._id);
                         }
                     });
                 }
