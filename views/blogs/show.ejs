@@ -23,23 +23,32 @@
 	<section class="ui main text container segment">
 		<div class="ui comments">
 			<h3 class="ui dividing header">Comments</h3>
-			<div class="comment">
-				<a class="avatar">
-					<img src="https://image.freepik.com/free-vector/basic-variety-silhouette-avatars_23-2147675615.jpg">
-				</a>
-				<div class="content">
-					<% blog.comments.forEach(comment => { %>
-					<a class="author"><%= comment.author %> </a>
-					<div class="metadata">
-						<span class="date"><%= comment.created.toDateString() %> </span>
+			<div class="ui attached segment top">
+				<div class="ui divided items">
+					<div class="item">
+						<% blog.comments.forEach((comment) => { %>
+							<div class="comment">
+								<a class="avatar">
+									<img src="https://image.freepik.com/free-vector/basic-variety-silhouette-avatars_23-2147675615.jpg">
+								</a>
+								<div class="content">
+									
+									<a class="author"><%= comment.author %> </a>
+									<div class="metadata">
+										<span class="date"><%= comment.created %> </span>
+									</div>
+									<div class="text"><%= comment.text %> </div>
+									<div class="actions">
+										<a class="reply">Reply</a>
+									</div>
+						<% }) %>
+								</div>
+							</div>
 					</div>
-					<div class="text"><%= comment.text %> </div>
-					<div class="actions">
-						<a class="reply">Reply</a>
-					</div>
-					<% }) %>
 				</div>
+				
 			</div>
+			
 		</div>
 	</section>
 
