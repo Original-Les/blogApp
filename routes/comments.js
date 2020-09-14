@@ -21,8 +21,8 @@ router.post("/", (req, res) => {
     Blog.findById(req.params.id, (err, foundBlog) => {
         if(err){
             console.error(err.message);
+            res.send(err.message);
         } else {
-            console.log(req.body.blog.comment);
             Comment.create(req.body.comment, (err, comment) => {
                 if(err){
                     console.error(err.message);
@@ -33,8 +33,8 @@ router.post("/", (req, res) => {
                         if(err){
                             console.error(err.message);
                         } else {
-                            console.log(comment);
-                            res.redirect("/blogs/" + blogs._id);
+                            
+                            res.redirect("/blogs/" + blog._id);
                         }
                     });
                 }
@@ -43,8 +43,12 @@ router.post("/", (req, res) => {
     })
 });
 
-// TODO: COMMENT EDIT ROUTE
-    // show new comment form
+// // TODO: COMMENT FEED ROUTE
+// router.get("/", (req, res) => {
+//     res.render("comments/feed");
+// });
+// // TODO: COMMENT EDIT ROUTE
+//     // show new comment form
 
 
 module.exports = router;
