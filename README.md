@@ -1,7 +1,12 @@
 # blogApp
 
+### README Resources
+* https://www.tablesgenerator.com/markdown_tables
+* Markdown Basics : https://markdown-guide.readthedocs.io/en/latest/basics.html
+
+
 ### Packages used(Stack) in Web Dev Bootcamp for this project:
-Markdown Basics : https://markdown-guide.readthedocs.io/en/latest/basics.html
+
 
 * expressjs : https://expressjs.com/
 * mongodb   : https://www.mongodb.com/
@@ -12,4 +17,4 @@ Markdown Basics : https://markdown-guide.readthedocs.io/en/latest/basics.html
 
 #### Initial commit contains code from the RESTful route section of Colt's Steele, Web Developer Bootcamp.
 
-
+## Blog App Routes
