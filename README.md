@@ -20,13 +20,25 @@
 ## Blog App Routes
 
 * Blogs Routes - 
-####  |   Name   |      Path       | HTTP Verb  |             Purpose                     | Mongoose Method           |
-      |----------|-----------------|------------|-----------------------------------------|---------------------------|
-      | Index    | /blogs          | GET        | List all blogs                          | blog.find()               |
-      | New      | /blogs/new      | GET        | Show new blog form                      | N/A                       |
-      | Create   | /blogs          | POST       | Create a new blog, then redirect, index | Blog.create()             |
-      | Show     | /blogs/:id      | GET        | Show view of one blog                   | Blog.findById()           |
-      | Edit     | /blogs/:id/edit | GET        | Show edit form for one blog             | Blog.findById()           |
-      | Update   | /blogs/:id      | PUT        | Update one blog, redirect blog, show    | Blog.findByIdAndUpdate()  |
-      | Destroy  | /blogs/:id      | DELETE     | Delete the one blog, redirect, index    | Blog.findByIdAndRemove()  |
-     
+
+|   Name   |      Path       | HTTP Verb  |             Purpose                     | Mongoose Method           |
+|----------|-----------------|------------|-----------------------------------------|---------------------------|
+| Index    | /blogs          | GET        | List all blogs                          | blog.find()               |
+| New      | /blogs/new      | GET        | Show new blog form                      | N/A                       |
+| Create   | /blogs          | POST       | Create a new blog, then redirect, index | Blog.create()             |
+| Show     | /blogs/:id      | GET        | Show view of one blog                   | Blog.findById()           |
+| Edit     | /blogs/:id/edit | GET        | Show edit form for one blog             | Blog.findById()           |
+| Update   | /blogs/:id      | PUT        | Update one blog, redirect blog, show    | Blog.findByIdAndUpdate()  |
+| Destroy  | /blogs/:id      | DELETE     | Delete the one blog, redirect, index    | Blog.findByIdAndRemove()  |
+
+* Blog Comments Routes -      
+
+|   Name   |      Path                            | HTTP Verb  |             Purpose                     | Mongoose  Method           |
+|----------|--------------------------------------|------------|-----------------------------------------|---------------------------|
+| Index    | /blogs/:id/comments                  | GET        | List all blogs                          | blog.find()               |
+| New      | /blogs/:id/comments/new              | GET        | Show new blog form                      | N/A                       |
+| Create   | /blogs/:id/comments                  | POST       | Create a new blog, then redirect, index | Blog.create()             |
+| Show     | /blogs/:id                           | GET        | Show view of one blog                   | Blog.findById()           |
+| Edit     | /blogs/:id/comments/:comment_id/edit | GET        | Show edit form for one blog             | Blog.findById()           |
+| Update   | /blogs/:id/comments/comment_id       | PUT        | Update one blog, redirect blog, show    | Blog.findByIdAndUpdate()  |
+| Destroy  | /blogs/:id/comments/comment_id       | DELETE     | Delete the one blog, redirect, index    | Blog.findByIdAndRemove()  |
