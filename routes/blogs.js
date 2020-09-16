@@ -46,7 +46,6 @@ router.post("/blogs", function(req, res){
 
 // SHOW ROUTE - Display more info on particular item
 router.get("/blogs/:id", function(req, res){
-	
 	Blog.findById(req.params.id, function(err, foundBlog){
 		if(err){
 			console.error(err.message);

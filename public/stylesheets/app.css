@@ -6,23 +6,31 @@ body {
 
 }
 
+.description {
+	margin-bottom: 1em;
+}
+
 .huge.header {
 	color: #ffffff; 
-	
-}
+	}
 
 i.icon.street {
 	font-size: 2em;
 }
 
-section.ui.main.text {
+.ui.main.text {
 	margin: 64px auto 1em;
+}
+
+.header.item {
+	margin-top: 64px auto 1em;
+
 }
 
 .ui.attached {
 	border: none;
 }
 
-#delete {
+.delete {
 	display: inline;
 }
