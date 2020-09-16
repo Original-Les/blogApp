@@ -1,28 +1,30 @@
 <%- include("../partials/header")%>
 
-<section class="ui main text container segment">
-	<div class="ui huge header centered"><%= blog.title %></div>
-	<div class="ui attached">
-		<div class="item">
-			<img class="ui centered rounded image" src="<%= blog.image %>">
+	<!--Blog Show View-->
+	<section class="ui main text container segment">
+		<div class="ui huge header centered"><%= blog.title %></div>
+		<div class="ui attached">
+			<div class="item">
+				<img class="ui centered rounded image" src="<%= blog.image %>">
+			</div>
+			<div class="content">
+				<span><%= blog.created.toDateString() %></span>
+			</div>
+			<div class="description">
+				<p><%- blog.body %></p>
+			</div>
+			
+			<a class="ui orange small basic button" href="/blogs/<%= blog._id %>/edit">EDIT</a>
+			<form class="delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+				<button class="ui red basic small button">DELETE</button>
+			</form>
 		</div>
-		<div class="content">
-			<span><%= blog.created.toDateString() %></span>
-		</div>
-		<div class="description">
-			<p><%- blog.body %></p>
-		</div>
-		<a class="ui purple basic button" href="/blogs/<%= blog._id %>/comments/new">Comment</a>
-		<a class="ui orange basic button" href="/blogs/<%= blog._id %>/edit">EDIT</a>
-		<form id="delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
-			<button class="ui red basic button">DELETE</button>
-		</form>
-	</div>
-</section>
-
+	</section>
+	<!--Comments View-->
 	<section class="ui main text container segment">
 		<div class="ui comments">
 			<h3 class="ui dividing header">Comments</h3>
+			<a class="ui purple basic button" href="/blogs/<%= blog._id %>/comments/new">Comment</a>
 			<div class="ui attached segment top">
 				<div class="ui divided items">
 					<div class="item">
@@ -41,14 +43,16 @@
 									<div class="actions">
 										<a class="reply">Reply</a>
 									</div>
+									<a class="ui basic mini button orange" href="/blogs/<%= blog._id %> /comments/<%= comment._id %>/edit">Edit</a>
+									<form class="delete" action="/blogs/<%= comment._id %>?_method=DELETE" method="POST">
+										<button class="ui red basic mini button">DELETE</button>
+									</form>
 						<% }) %>
 								</div>
 							</div>
 					</div>
 				</div>
-				
 			</div>
-			
 		</div>
 	</section>
 
