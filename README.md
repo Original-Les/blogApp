@@ -18,3 +18,15 @@
 #### Initial commit contains code from the RESTful route section of Colt's Steele, Web Developer Bootcamp.
 
 ## Blog App Routes
+
+* Blogs Routes - 
+####  |   Name   |      Path       | HTTP Verb  |             Purpose                     | Mongoose Method           |
+      |----------|-----------------|------------|-----------------------------------------|---------------------------|
+      | Index    | /blogs          | GET        | List all blogs                          | blog.find()               |
+      | New      | /blogs/new      | GET        | Show new blog form                      | N/A                       |
+      | Create   | /blogs          | POST       | Create a new blog, then redirect, index | Blog.create()             |
+      | Show     | /blogs/:id      | GET        | Show view of one blog                   | Blog.findById()           |
+      | Edit     | /blogs/:id/edit | GET        | Show edit form for one blog             | Blog.findById()           |
+      | Update   | /blogs/:id      | PUT        | Update one blog, redirect blog, show    | Blog.findByIdAndUpdate()  |
+      | Destroy  | /blogs/:id      | DELETE     | Delete the one blog, redirect, index    | Blog.findByIdAndRemove()  |
+     
