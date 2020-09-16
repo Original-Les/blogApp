@@ -1,0 +1,19 @@
+<%- include("../partials/header")%>
+
+<!-- Comments Edit Form -->
+	<div class="ui main text container segment">
+		<form class="ui form" action="/blogs/<%= blog_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+			<div class="field">
+				<label for="comment[author]">Author</label>
+			</div>
+			<div class="field">
+				<label for="comment[text]">Blog Content</label>
+				<textarea name="comment[text]" id="content" cols="30" rows="10" required>
+					<%= comment.text %>
+				</textarea>
+			</div>
+			<button class="ui green button">Submit</button>
+		</form>
+	</div>
+
+<%- include("../partials/footer")%>

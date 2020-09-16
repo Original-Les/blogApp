@@ -8,17 +8,17 @@ const express = require("express"),
 // ROUTES FOR COMMENTS 
 // 
 router.get("/new", (req, res) => {
-    Blog.findById(req.params.id, (err, foundBlog) => {
+    Blog.findById(req.params.id, (err, blog) => {
         if(err){
             console.error(err.message);
         } else {
-            res.render("comments/new",{blog: foundBlog});
+            res.render("comments/new",{blog: blog});
         }
     });
 });
 // Create New Comment
 router.post("/", (req, res) => {
-    Blog.findById(req.params.id, (err, foundBlog) => {
+    Blog.findById(req.params.id, (err, blog) => {
         if(err){
             console.error(err.message);
             res.send(err.message);
@@ -28,13 +28,13 @@ router.post("/", (req, res) => {
                     console.error(err.message);
                 } else {
                     comment.save();
-                    foundBlog.comments.push(comment);
-                    foundBlog.save((err, comment) =>{
+                    blog.comments.push(comment);
+                    blog.save((err, comment) =>{
                         if(err){
                             console.error(err.message);
                         } else {
                             
-                            res.redirect("/blogs/" + foundBlog._id);
+                            res.redirect("/blogs/" + blog._id);
                         }
                     });
                 }
@@ -43,12 +43,41 @@ router.post("/", (req, res) => {
     })
 });
 
-// // TODO: COMMENT FEED ROUTE
-// router.get("/", (req, res) => {
-//     res.render("comments/feed");
-// });
-// // TODO: COMMENT EDIT ROUTE
-//     // show new comment form
+//Comment Edit Route
+router.get("/:comment_id/edit",(req, res)=>{
+    Comment.findById(req.params.comment_id, function(err, foundComment){
+        if(err){
+            console.error(err.message);
+        } else {
+            res.render("comments/edit",
+                {
+                    blog_id  : req.params.id,
+                    comment: foundComment
+                }
+            );
+        }
+    });
+});
 
+// Comment Update Route
+router.put("/:comment_id", (req, res) => {
+    // find comment by id and update
+    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, (err, foundComment) => {
+        if(err){
+            console.error(err.message);
+        } else {
+            res.redirect("/blogs/" + req.params.id);
+        }
+    });
+});
+
+// Comment Destroy Route
+router.delete("/:comment_id", (err, res) => {
+    if(err){
+        console.error(err.message);
+    } else {
+        res.redirect("/blogs");
+    }
+});
 
 module.exports = router;
