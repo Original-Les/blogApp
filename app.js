@@ -1,15 +1,17 @@
-const expressSanitizer  = require('express-sanitizer'),
-	  methodOverride 	= require('method-override'),
-	  bodyParser 		= require('body-parser'),
-	  mongoose   		= require("mongoose"),
-      express    		= require("express"),
-	  app        		= express(),
-	  router 			= express.Router();
-	 
-//const { Router } = require('express');
-// Define Routes
-const blogRoutes = require("./routes/blogs"),
-	  commentRoutes = require("./routes/comments");	
+const expressSanitizer  	= require('express-sanitizer'),
+	  methodOverride 		= require('method-override'),
+	  bodyParser 			= require('body-parser'),
+	  mongoose   			= require("mongoose"),
+      express    			= require("express"),
+	  app        			= express(),
+	  session               = require("express-session"),
+	  passport          	= require("passport"),
+	  LocalStrategy     	= require("passport-local"),
+	  passportLocalMongoose = require("passport-local-mongoose"),
+	  User                  = require("./models/user"),
+	  blogRoutes            = require("./routes/blogs"),
+	  commentRoutes         = require("./routes/comments"),	
+	  router 			    = express.Router();
 
 // DB CONNECT               
 mongoose.connect("mongodb://localhost:27017/blog_app_db", {
@@ -23,14 +25,23 @@ mongoose.set('useFindAndModify', false);
 
 // APP CONFIG
 app.set('view engine', 'ejs');
+app.use(session({
+	secret: "blogApp",
+	resave: false,
+	saveUninitialized: false,
+	cookie: {secure: true}
+}));
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.use(expressSanitizer());
+app.use(passport.initialize());
+app.use(passport.session());
 
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // Requiring ExpressRoutes
-//app.use('/', indexRoutes);
 app.use('/', blogRoutes);
 app.use('/blogs/:id/comments', commentRoutes);
 

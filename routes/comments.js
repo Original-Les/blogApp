@@ -1,3 +1,4 @@
+const Router = require("./blogs");
 
 const express = require("express"),
       Blog = require("../models/blog"),
