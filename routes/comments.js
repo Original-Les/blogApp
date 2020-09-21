@@ -13,7 +13,7 @@ router.get("/new", (req, res) => {
         if(err){
             console.error(err.message);
         } else {
-            res.render("comments/new",{blog: blog});
+            res.render("comments/new", {blog: blog});
         }
     });
 });
@@ -30,7 +30,7 @@ router.post("/", (req, res) => {
                 } else {
                     comment.save();
                     blog.comments.push(comment);
-                    blog.save((err, comment) =>{
+                    blog.save((err, comment) => {
                         if(err){
                             console.error(err.message);
                         } else {
@@ -45,8 +45,8 @@ router.post("/", (req, res) => {
 });
 
 //Comment Edit Route
-router.get("/:comment_id/edit",(req, res)=>{
-    Comment.findById(req.params.comment_id, function(err, foundComment){
+router.get("/:comment_id/edit",(req, res) => {
+    Comment.findById(req.params.comment_id, (err, foundComment) => {
         if(err){
             console.error(err.message);
         } else {
@@ -65,7 +65,7 @@ router.put("/:comment_id", (req, res) => {
     // find comment by id and update
     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, (err, foundComment) => {
         if(err){
-            console.error(err.message);
+            console.error(err);
         } else {
             res.redirect("/blogs/" + req.params.id);
         }

@@ -5,35 +5,31 @@ const express = require("express"),
 
 
 // Blog ROUTES
-////////////////////////////////////////
-// ROOT PAGE REDIRECTS TO INDEX PAGE
-router.get("/", function(req, res){
-	res.redirect("/blogs");
-});
 
 // INDEX ROUTE - GET REQUEST SHOWS ALL BLOGS
-router.get('/blogs', function(req, res){
-	Blog.find({}, function(err, foundBlog){
+router.get('/', (req, res) => {
+	Blog.find({}, (err, blogs) => {
 		if(err){
 			console.error("ERROR", err.message);
 		}
 		else {
-			res.render("index", {blogs: foundBlog});
+			console.log(blogs);
+			res.render("index", {blogs: blogs});
 		}
 	});
 	
 });
 
 // NEW ROUTE - ADD ROUTE TO FORM FOR NEW BLOG
-router.get("/blogs/new", function(req, res){
+router.get("/blogs/new", (req, res) => {
 	res.render("blogs/new");
 });
 
 // CREATE ROUTE - ADD NEW BLOG TO DATABASE
-router.post("/blogs", function(req, res){
+router.post("/blogs", (req, res) => {
 	//create blog
 	req.body.blog.body = req.sanitize(req.body.blog.body);
-	Blog.create(req.body.blog, function(err, newBlog){
+	Blog.create(req.body.blog, (err, newBlog) => {
 		if(err){
 			console.error(err.message);
 			res.render("new");
@@ -46,8 +42,8 @@ router.post("/blogs", function(req, res){
 });
 
 // SHOW ROUTE - Display more info on particular item
-router.get("/blogs/:id", function(req, res){
-	Blog.findById(req.params.id, function(err, foundBlog){
+router.get("/blogs/:id", (req, res) => {
+	Blog.findById(req.params.id, (err, foundBlog) => {
 		if(err){
 			console.error(err.message);
 			res.redirect("/blogs"); 
@@ -60,8 +56,8 @@ router.get("/blogs/:id", function(req, res){
 });
 
 // EDIT ROUTE
-router.get("/blogs/:id/edit", function(req, res){
-	Blog.findById(req.params.id, function(err, foundBlog){
+router.get("/blogs/:id/edit", (req, res) => {
+	Blog.findById(req.params.id, (err, foundBlog) => {
 		if(err){
 			res.redirect("/blogs")
 		}
@@ -72,9 +68,9 @@ router.get("/blogs/:id/edit", function(req, res){
 });
 
 // UPDATE ROUTE
-router.put("/blogs/:id", function(req, res){
+router.put("/blogs/:id", (req, res)=> {
 	req.body.blog.body = req.sanitize(req.body.blog.body)
-	Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
+	Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
 		if(err){
 			res.redirect('/blogs');
 		}
@@ -85,9 +81,9 @@ router.put("/blogs/:id", function(req, res){
 });
 
 // DESTROY ROUTE
-router.delete('/blogs/:id', function(req, res){
+router.delete('/blogs/:id', (req, res) => {
 	// Destroy blog
-	Blog.findByIdAndRemove(req.params.id, function(err){
+	Blog.findByIdAndRemove(req.params.id, (err) => {
 		if(err){
 			console.error(err.message);
 		}

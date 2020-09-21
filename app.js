@@ -9,6 +9,7 @@ const expressSanitizer  	= require('express-sanitizer'),
 	  LocalStrategy     	= require("passport-local"),
 	  passportLocalMongoose = require("passport-local-mongoose"),
 	  User                  = require("./models/user"),
+	  indexRoutes           = require("./routes/index"),
 	  blogRoutes            = require("./routes/blogs"),
 	  commentRoutes         = require("./routes/comments"),	
 	  router 			    = express.Router();
@@ -42,8 +43,10 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Requiring ExpressRoutes
-app.use('/', blogRoutes);
+app.use('/', indexRoutes);
+app.use('/blogs', blogRoutes);
 app.use('/blogs/:id/comments', commentRoutes);
+
 
 const port = process.env.PORT || 3004;
 app.listen(port, () => {
